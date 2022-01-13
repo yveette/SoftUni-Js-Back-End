@@ -34,5 +34,5 @@
 <a href="https://softuni.bg">`https://softuni.bg`</a>
 - SoftUni Judge 
 <a href="https://judge.softuni.bg">`https://judge.softuni.bg`</a>
-- Postman 
-<a href="https://www.postman.com">`https://www.postman.com`</a>
+- Node.js 
+<a href="https://nodejs.org">`https://nodejs.org`</a>
