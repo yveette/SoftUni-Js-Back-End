@@ -36,3 +36,15 @@
 <a href="https://judge.softuni.bg">`https://judge.softuni.bg`</a>
 - Node.js 
 <a href="https://nodejs.org">`https://nodejs.org`</a>
+- Postman 
+<a href="https://www.postman.com">`https://www.postman.com`</a>
+- Express.js 
+<a href="https://expressjs.com">`https://expressjs.com`</a>
+- Express-handlebars 
+<a href="https://www.npmjs.com/package/express-handlebars">`https://www.npmjs.com/package/express-handlebars`</a>
+- Handlebars 
+<a href="https://handlebarsjs.com">`https://handlebarsjs.com`</a>
+- MongoDB 
+<a href="https://www.mongodb.com">`https://www.mongodb.com`</a>
+- Mongoose 
+<a href="https://mongoosejs.com">https://mongoosejs.com`</a>
