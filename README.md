@@ -47,4 +47,4 @@
 - MongoDB 
 <a href="https://www.mongodb.com">`https://www.mongodb.com`</a>
 - Mongoose 
-<a href="https://mongoosejs.com">https://mongoosejs.com`</a>
+<a href="https://mongoosejs.com">`https://mongoosejs.com`</a>
