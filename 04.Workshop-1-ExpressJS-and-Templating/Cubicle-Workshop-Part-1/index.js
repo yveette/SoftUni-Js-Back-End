@@ -7,6 +7,7 @@ const hbs = require('express-handlebars');
 const cubesService = require('./config/cubes');
 
 const { home } = require('./controllers/home');
+const { about } = require('./controllers/about');
 const create = require('./controllers/create');
 
 const app = express();
@@ -21,6 +22,7 @@ app.use('/static', express.static('static'));
 app.use(cubesService());
 
 app.get('/', home);
+app.get('/about', about)
 app.route('/create')
     .get(create.get)
     .post(create.post);
