@@ -1,9 +1,21 @@
-const env = process.env.NODE_ENV || 'development';
+// const env = process.env.NODE_ENV || 'development';
+// const config = require('./config/config')[env];
 
-const config = require('./config/config')[env];
-const app = require('express')();
+const express = require('express');
+const hbs = require('express-handlebars');
 
-require('./config/express')(app);
-require('./config/routes')(app);
+const { home } = require('./controllers/home');
 
-app.listen(config.port, console.log(`Listening on port ${config.port}! Now its up to you...`));
+const app = express();
+
+app.engine('hbs', hbs.create({
+    extname: '.hbs'
+}).engine);
+app.set('view engine', 'hbs');
+
+app.use(express.urlencoded({ extended: true }));
+app.use('/static', express.static('static'));
+
+app.get('/', home);
+
+app.listen(3000, () => console.log('Server started on port 3000'));
