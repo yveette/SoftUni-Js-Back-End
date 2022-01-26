@@ -10,6 +10,7 @@ const { home } = require('./controllers/home');
 const { about } = require('./controllers/about');
 const create = require('./controllers/create');
 const { details } = require('./controllers/details');
+const { notFound } = require('./controllers/notFound');
 
 const app = express();
 
@@ -29,5 +30,7 @@ app.route('/create')
     .post(create.post);
 
 app.get('/details/:id', details);
+
+app.all('*', notFound);
 
 app.listen(3000, () => console.log('Server started on port 3000'));
