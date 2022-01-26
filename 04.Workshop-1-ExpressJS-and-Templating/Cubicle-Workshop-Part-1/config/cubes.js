@@ -32,7 +32,18 @@ async function getAll(query) {
 
 }
 
-async function createCube(cube){
+async function getById(id) {
+    const data = await read();
+    const cube = data[id];
+
+    if (cube) {
+        return Object.assign({}, { id }, cube);
+    } else {
+        return undefined;
+    }
+}
+
+async function createCube(cube) {
     const cubes = await read();
     let id;
     do {
@@ -51,6 +62,7 @@ function nextId() {
 module.exports = () => (req, res, next) => {
     req.storage = {
         getAll,
+        getById,
         createCube
     };
     next();

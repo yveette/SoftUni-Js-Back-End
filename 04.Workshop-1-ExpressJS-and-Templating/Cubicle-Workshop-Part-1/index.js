@@ -9,6 +9,7 @@ const cubesService = require('./config/cubes');
 const { home } = require('./controllers/home');
 const { about } = require('./controllers/about');
 const create = require('./controllers/create');
+const { details } = require('./controllers/details');
 
 const app = express();
 
@@ -26,5 +27,7 @@ app.get('/about', about)
 app.route('/create')
     .get(create.get)
     .post(create.post);
+
+app.get('/details/:id', details);
 
 app.listen(3000, () => console.log('Server started on port 3000'));
