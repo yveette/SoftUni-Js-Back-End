@@ -28,8 +28,17 @@ async function getAll(query) {
         .entries(data)
         .map(([id, v]) => Object.assign({}, { id }, v));
 
-    return cubes;
+    if (query.search) {
+        cubes = cubes.filter(c => c.name.toLocaleLowerCase().includes(query.search.toLocaleLowerCase()));
+    }
+    if (query.from) {
+        cubes = cubes.filter(c => c.difficultyLevel >= Number(query.from))
+    }
+    if (query.to) {
+        cubes = cubes.filter(c => c.difficultyLevel <= Number(query.to))
+    }
 
+    return cubes;
 }
 
 async function getById(id) {
