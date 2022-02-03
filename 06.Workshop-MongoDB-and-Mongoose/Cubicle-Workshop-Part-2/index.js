@@ -7,10 +7,12 @@ const hbs = require('express-handlebars');
 const initDb = require('./models/index');
 
 const cubesService = require('./config/cubes');
+const accessoryService = require('./config/accessory');
 
 const { home } = require('./controllers/home');
 const { about } = require('./controllers/about');
 const create = require('./controllers/create');
+const accessory = require('./controllers/accessory');
 const { details } = require('./controllers/details');
 const { notFound } = require('./controllers/notFound');
 
@@ -29,6 +31,7 @@ async function start() {
     app.use(express.urlencoded({ extended: true }));
     app.use('/static', express.static('static'));
     app.use(cubesService());
+    app.use(accessoryService());
 
     app.get('/', home);
     app.get('/about', about)
@@ -37,6 +40,10 @@ async function start() {
         .post(create.post);
 
     app.get('/details/:id', details);
+
+    app.route('/accessory')
+        .get(accessory.get)
+        .post(accessory.post);
 
     app.all('*', notFound);
 

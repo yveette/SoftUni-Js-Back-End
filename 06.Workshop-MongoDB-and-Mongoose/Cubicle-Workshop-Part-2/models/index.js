@@ -1,7 +1,8 @@
 const mongoose = require('mongoose');
 
 const Cube = require('./Cube');
-require('./Accessory');
+const Accessory = require('./Accessory');
+// require('./Accessory');
 
 const connectionString = 'mongodb://localhost:27017/cubicle';
 
@@ -12,6 +13,12 @@ async function init() {
             useUnifiedTopology: true
         });
         console.log('Database connected!');
+
+        // await Accessory.create({
+        //     "name" : "Sticker Bomb",
+        //     "description": "An unique sticker.",
+        //     "imageUrl": "https://i.imgur.com/v4PA67e.jpeg"
+        // })
 
         // await Cube.create({
         //     "name": "Gan356 Air SM",

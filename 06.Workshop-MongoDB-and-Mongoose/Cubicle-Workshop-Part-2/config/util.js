@@ -4,7 +4,7 @@ function accessoryViewModel(accessory) {
         name: accessory.name,
         description: accessory.description,
         imageUrl: accessory.imageUrl,
-        cubes: accessory.cubes,
+        // cubes: accessory.cubes,
     }
 }
 
