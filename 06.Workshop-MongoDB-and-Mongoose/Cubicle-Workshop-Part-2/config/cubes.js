@@ -38,11 +38,19 @@ async function createCube(cube) {
     await result.save();
 }
 
+async function attachAccessory(cubeId, accessoryId) {
+    const existing = await Cube.findById(cubeId);
+    existing.accessories.push(accessoryId);
+
+    await existing.save();
+}
+
 module.exports = () => (req, res, next) => {
     req.storage = {
         getAll,
         getById,
-        createCube
+        createCube,
+        attachAccessory
     };
     next();
 }

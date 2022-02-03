@@ -13,6 +13,7 @@ const { home } = require('./controllers/home');
 const { about } = require('./controllers/about');
 const create = require('./controllers/create');
 const accessory = require('./controllers/accessory');
+const attach = require('./controllers/attach');
 const { details } = require('./controllers/details');
 const { notFound } = require('./controllers/notFound');
 
@@ -44,6 +45,10 @@ async function start() {
     app.route('/accessory')
         .get(accessory.get)
         .post(accessory.post);
+
+    app.route('/attach/:id')
+        .get(attach.get)
+        .post(attach.post);
 
     app.all('*', notFound);
 
