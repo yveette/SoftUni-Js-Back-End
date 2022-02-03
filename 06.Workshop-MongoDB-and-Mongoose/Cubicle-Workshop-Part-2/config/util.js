@@ -3,8 +3,7 @@ function accessoryViewModel(accessory) {
         id: accessory._id,
         name: accessory.name,
         description: accessory.description,
-        imageUrl: accessory.imageUrl,
-        // cubes: accessory.cubes,
+        imageUrl: accessory.imageUrl
     }
 }
 
@@ -17,6 +16,11 @@ function cubeViewModel(cube) {
         difficultyLevel: cube.difficultyLevel,
         accessories: cube.accessories,
     };
+
+    if (model.accessories.length > 0 && model.accessories[0].name) {
+        model.accessories = model.accessories.map(accessoryViewModel);
+    }
+
     return model;
 }
 

@@ -11,7 +11,7 @@ module.exports = {
             const existingIds = cube.accessories.map(a => a._id.toString());
             const availableAccessories = accessories.filter(a => existingIds.includes(a.id.toString()) == false);
 
-            res.render('attach', {  cube, accessories: availableAccessories });
+            res.render('attach', {  cube, accessories });
         } catch (err) {
             res.redirect('404');
         }

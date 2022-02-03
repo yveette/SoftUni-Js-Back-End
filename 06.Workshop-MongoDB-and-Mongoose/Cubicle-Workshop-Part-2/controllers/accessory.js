@@ -9,9 +9,6 @@ module.exports = {
             imageUrl: req.body.imageUrl
         }
 
-        console.log(accessory);
-
-
         try {
             await req.accessory.createAccessory(accessory);
             res.redirect('/');
