@@ -3,30 +3,8 @@ const Cube = require('../models/Cube');
 const { cubeViewModel } = require('./util');
 const filePath = './config/database.json';
 
-async function read() {
-    try {
-        const file = await fs.readFile(filePath);
-        return JSON.parse(file);
-    } catch {
-        console.error('Database read error!');
-        console.error(err);
-        process.exit(1);
-    }
-}
-
-async function write(data) {
-    try {
-        await fs.writeFile(filePath, JSON.stringify(data, null, 2))
-    } catch {
-        console.error('Database write error!');
-        console.error(err);
-        process.exit(1);
-    }
-}
-
 async function getAll(query) {
     const cubes = await Cube.find({});
-
 
     /*
     const data = await read();
@@ -56,34 +34,12 @@ async function getById(id) {
     } else {
         return undefined;
     }
-
-    /*
-    const data = await read();
-    const cube = data[id];
-
-    if (cube) {
-        return Object.assign({}, { id }, cube);
-    } else {
-        return undefined;
-    }
-    */
 }
 
 async function createCube(cube) {
-    const cubes = await read();
-    let id;
-    do {
-        id = nextId();
-    } while (cubes.hasOwnProperty(id));
-
-    cubes[id] = cube;
-    await write(cubes);
+    const result = new Cube(cube);
+    await result.save();
 }
-
-function nextId() {
-    return 'xxxxxxxxxx'.replace(/x/g, () => (Math.random() * 16 | 0).toString(16));
-}
-
 
 module.exports = () => (req, res, next) => {
     req.storage = {

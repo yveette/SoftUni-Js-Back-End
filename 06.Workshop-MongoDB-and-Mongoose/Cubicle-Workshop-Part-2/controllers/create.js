@@ -2,7 +2,7 @@ module.exports = {
     get(req, res) {
         res.render('create');
     },
-   async post(req, res) {
+    async post(req, res) {
         const cube = {
             name: req.body.name,
             description: req.body.description,
@@ -10,7 +10,12 @@ module.exports = {
             difficultyLevel: Number(req.body.difficultyLevel),
         }
 
-        await req.storage.createCube(cube);
-        res.redirect('/');
+        try {
+            await req.storage.createCube(cube);
+            res.redirect('/');
+        } catch (err) {
+            console.log('Error creating record');
+            res.redirect('/create');
+        }
     }
 }
