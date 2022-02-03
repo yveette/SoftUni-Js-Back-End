@@ -4,6 +4,8 @@
 const express = require('express');
 const hbs = require('express-handlebars');
 
+const initDb = require('./models/index');
+
 const cubesService = require('./config/cubes');
 
 const { home } = require('./controllers/home');
@@ -12,25 +14,31 @@ const create = require('./controllers/create');
 const { details } = require('./controllers/details');
 const { notFound } = require('./controllers/notFound');
 
-const app = express();
+start();
 
-app.engine('hbs', hbs.create({
-    extname: '.hbs'
-}).engine);
-app.set('view engine', 'hbs');
+async function start() {
+    await initDb();
 
-app.use(express.urlencoded({ extended: true }));
-app.use('/static', express.static('static'));
-app.use(cubesService());
+    const app = express();
 
-app.get('/', home);
-app.get('/about', about)
-app.route('/create')
-    .get(create.get)
-    .post(create.post);
+    app.engine('hbs', hbs.create({
+        extname: '.hbs'
+    }).engine);
+    app.set('view engine', 'hbs');
 
-app.get('/details/:id', details);
+    app.use(express.urlencoded({ extended: true }));
+    app.use('/static', express.static('static'));
+    app.use(cubesService());
 
-app.all('*', notFound);
+    app.get('/', home);
+    app.get('/about', about)
+    app.route('/create')
+        .get(create.get)
+        .post(create.post);
 
-app.listen(3000, () => console.log('Server started on port 3000'));
+    app.get('/details/:id', details);
+
+    app.all('*', notFound);
+
+    app.listen(3000, () => console.log('Server started on port 3000'));
+}

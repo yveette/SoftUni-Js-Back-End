@@ -9,7 +9,8 @@
     },
     "dependencies": {
         "express": "^4.17.1",
-        "express-handlebars": "^6.0.2"
+        "express-handlebars": "^6.0.2",
+        "mongoose": "^6.2.0"
     },
     "devDependencies": {
         "nodemon": "^1.19.4"
