@@ -1,4 +1,6 @@
 const fs = require('fs/promises');
+const Cube = require('../models/Cube');
+const { cubeViewModel } = require('./util');
 const filePath = './config/database.json';
 
 async function read() {
@@ -23,6 +25,10 @@ async function write(data) {
 }
 
 async function getAll(query) {
+    const cubes = await Cube.find({});
+
+
+    /*
     const data = await read();
     let cubes = Object
         .entries(data)
@@ -37,11 +43,21 @@ async function getAll(query) {
     if (query.to) {
         cubes = cubes.filter(c => c.difficultyLevel <= Number(query.to))
     }
+    */
 
-    return cubes;
+    return cubes.map(cubeViewModel);
 }
 
 async function getById(id) {
+    const cube = await Cube.findById(id);
+
+    if (cube) {
+        return cubeViewModel(cube);
+    } else {
+        return undefined;
+    }
+
+    /*
     const data = await read();
     const cube = data[id];
 
@@ -50,6 +66,7 @@ async function getById(id) {
     } else {
         return undefined;
     }
+    */
 }
 
 async function createCube(cube) {
