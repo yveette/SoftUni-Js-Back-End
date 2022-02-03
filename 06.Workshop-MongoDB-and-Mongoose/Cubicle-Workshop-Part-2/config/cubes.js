@@ -4,25 +4,22 @@ const { cubeViewModel } = require('./util');
 const filePath = './config/database.json';
 
 async function getAll(query) {
-    const cubes = await Cube.find({});
-
-    /*
-    const data = await read();
-    let cubes = Object
-        .entries(data)
-        .map(([id, v]) => Object.assign({}, { id }, v));
-
+    
+    const options = {};
     if (query.search) {
-        cubes = cubes.filter(c => c.name.toLocaleLowerCase().includes(query.search.toLocaleLowerCase()));
+        options.name = new RegExp(query.search, 'i');
     }
     if (query.from) {
-        cubes = cubes.filter(c => c.difficultyLevel >= Number(query.from))
+        options.difficultyLevel = { $gte: Number(query.from) };
     }
     if (query.to) {
-        cubes = cubes.filter(c => c.difficultyLevel <= Number(query.to))
+        if (!options.difficultyLevel) {
+            options.difficultyLevel = {};
+        }
+        options.difficultyLevel.$lte = Number(query.to);
     }
-    */
-
+    
+    const cubes = await Cube.find(options);
     return cubes.map(cubeViewModel);
 }
 
