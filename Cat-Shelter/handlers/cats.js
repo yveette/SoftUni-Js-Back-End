@@ -36,6 +36,11 @@ module.exports = (req, res) => {
         index.on('error', (err) => {
             console.log(err);
         });
+
+    } else if (pathname === '/cats/add-cat' && req.method === "POST") {
+
+    } else if (pathname === '/cats/add-breed' && req.method === "POST") {
+
     } else {
         return true;
     }
