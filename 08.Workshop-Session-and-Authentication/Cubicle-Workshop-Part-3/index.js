@@ -16,6 +16,7 @@ const accessory = require('./controllers/accessory');
 const attach = require('./controllers/attach');
 const { details } = require('./controllers/details');
 const { notFound } = require('./controllers/notFound');
+const auth = require('./controllers/auth');
 
 start();
 
@@ -49,6 +50,10 @@ async function start() {
     app.route('/attach/:id')
         .get(attach.get)
         .post(attach.post);
+
+    app.route('/login')
+        .get(auth.get)
+        .post(auth.post);
 
     app.all('*', notFound);
 
