@@ -8,7 +8,13 @@ module.exports = {
     registerGet(req, res) {
         res.render('auth/register');
     },
-    registerPost(req, res) {
-        res.redirect('/');
+    async registerPost(req, res) {
+        try {
+            await req.auth.register(req.body.username, req.body.password, req.body.repeatPassword)
+            res.redirect('/');
+        } catch (err) {
+            console.log('Error to register');
+            res.redirect('/register');
+        }
     }
 }
