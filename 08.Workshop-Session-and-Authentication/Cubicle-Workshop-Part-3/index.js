@@ -52,8 +52,12 @@ async function start() {
         .post(attach.post);
 
     app.route('/login')
-        .get(auth.get)
-        .post(auth.post);
+        .get(auth.loginGet)
+        .post(auth.loginPost);
+
+    app.route('/register')
+        .get(auth.registerGet)
+        .post(auth.registerPost);
 
     app.all('*', notFound);
 

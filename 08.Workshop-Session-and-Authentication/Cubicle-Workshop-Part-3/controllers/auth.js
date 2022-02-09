@@ -1,8 +1,14 @@
 module.exports = {
-    get(req, res) {
+    loginGet(req, res) {
         res.render('auth/login');
     },
-    post(req, res) {
+    loginPost(req, res) {
+        res.redirect('/');
+    },
+    registerGet(req, res) {
+        res.render('auth/register');
+    },
+    registerPost(req, res) {
         res.redirect('/');
     }
 }
